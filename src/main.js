@@ -5,6 +5,11 @@ import Layout from './components/Layout'
 import router from './router'
 import axios from 'axios'
 
+
+import VeeValidate  from 'vee-validate'
+
+Vue.use(VeeValidate)
+
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;
 

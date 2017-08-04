@@ -6,7 +6,7 @@
         <dl>
           <dt>{{ productList.pc.title }}</dt>
           <dd v-for="item in productList.pc.list">
-            <a href="item.url">{{ item.name }}</a>
+            <a :href="item.url">{{ item.name }}</a>
             <span class="hot" v-if="item.hot">hot</span>
           </dd>
         </dl>
@@ -14,7 +14,7 @@
         <dl>
           <dt>{{ productList.app.title }}</dt>
           <dd v-for="item in productList.app.list">
-            <a href="item.url">{{ item.name }}</a>
+            <a :href="item.url">{{ item.name }}</a>
           </dd>
         </dl>
       </div>
@@ -23,7 +23,7 @@
         <h3>最新消息</h3>
         <ul>
           <li v-for="item in newsList">
-            <a href="item.url">{{ item.name }}</a>
+            <a :href="item.url">{{ item.name }}</a>
           </li>
         </ul>
       </div>
@@ -36,11 +36,13 @@
         <ul>
           <template v-for="(item, index) in boardList">
             <li>
-              <img v-bind:src="item.src" alt="">
+              <img :src="item.src" alt="">
               <div class="text">
                 <h4 class="title">{{ item.title }}</h4>
                 <p class="description">{{ item.description }}</p>
-                <a class="pay" href="javascript:void(0);" id="item.id">立即购买</a>
+                <router-link tag="a" :to="{path: '/detail/' + item.toKey}" class="pay" :id="item.id">
+                  立即购买
+                </router-link>
               </div>
             </li>
           </template>
@@ -53,19 +55,12 @@
 
 <script>
 import Slider from '../components/Slider'
+
 export default {
   components: {
     Slider
   },
-  // created: function () {
-  //   this.$http.get('api/getNewsList')
-  //   .then((res) => {
-  //     this.newsList = res.data
-  //   }, (err) => {
-  //     console.log(err)
-  //   })
-  // },
-  data () {
+  data() {
     return {
       invTime: 2000,
       sliders: [
@@ -96,7 +91,7 @@ export default {
           title: '开放产品',
           description: '开放产品是一款开放产品',
           id: 'car',
-          toKey: 'analysis',
+          toKey: 'count',
           saleout: false
         },
         {
@@ -104,7 +99,7 @@ export default {
           title: '品牌营销',
           description: '品牌营销帮助你的产品更好地找到定位',
           id: 'earth',
-          toKey: 'count',
+          toKey: 'forecast',
           saleout: false
         },
         {
@@ -112,7 +107,7 @@ export default {
           title: '使命必达',
           description: '使命必达快速迭代永远保持最前端的速度',
           id: 'loud',
-          toKey: 'forecast',
+          toKey: 'analyice',
           saleout: true
         },
         {
@@ -193,7 +188,7 @@ export default {
       }
     }
   },
-  mounted(){//https://api.douban.com/v2/movie/in_theaters
+  mounted() {//https://api.douban.com/v2/movie/in_theaters
     this.$http({
       method: "GET",
       url: '/api/user',
@@ -205,10 +200,18 @@ export default {
     }).catch(function (error) {
       console.log(error);
     });
+
+    //跨域代码
+    this.$http.get('API/v2/movie/subject/1764796')
+      .then((res) => {
+        console.log(res.request)
+//       this.newsList = res.data
+      }, (err) => {
+        console.log(err)
+      })
   },
   methods: {
-    changeHnadle()
-    {
+    changeHnadle() {
       console.log('changed')
     }
   }

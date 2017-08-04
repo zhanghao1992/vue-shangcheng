@@ -25,31 +25,39 @@
 
     <base-dialog @clocseDialog="clossD" type="isLoginDialog" v-show="isLoginDialog">
       <h3 slot="header">请登录</h3>
-      <div slot="content"></div>
-      <template slot="footer">
-        <a href="javascript:void (0)">登录</a>
-      </template>
+      <div slot="content">
+        <log-form></log-form>
+      </div>
+      <!--<template slot="footer">-->
+        <!--<a href="javascript:void (0)">登录</a>-->
+      <!--</template>-->
     </base-dialog>
 
 
     <base-dialog @clocseDialog="clossD" type="isRegDialog" v-show="isRegDialog">
       <h3 slot="header">填写注册信息</h3>
-      <div slot="content">暗杀计划单萨的痕迹按时短时</div>
+      <div slot="content">
+        <reg-form></reg-form>
+      </div>
       <template slot="footer">
-        <a href="javascript:void (0)">注册</a>
+
       </template>
     </base-dialog>
 
 
     <base-dialog @clocseDialog="clossD" type="isAboutDialog" v-show="isAboutDialog">
       <h3 slot="header">关于我们</h3>
-      <div slot="content">暗杀计划单萨的痕迹按时短时</div>
+      <div slot="content">
+        <p style="text-indent: 2em;">暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时暗杀计划单萨的痕迹按时短时</p>
+      </div>
     </base-dialog>
   </div>
 </template>
 
 <script>
 import BaseDialog from '@/components/BaseDialog'
+import RegForm from '@/components/RegForm'
+import LogForm from '@/components/LogForm'
 export default {
   name: 'layout',
   data () {
@@ -61,7 +69,9 @@ export default {
     }
   },
   components: {
-    BaseDialog
+    BaseDialog,
+    RegForm,
+    LogForm
   },
   methods: {
     loginClick () {
@@ -101,6 +111,9 @@ a { text-decoration: none; }
 .fr { float: right; }
 body {
   background: #eee;
+}
+#layout {
+  padding-bottom: 88px;
 }
 /* 清除浮动 */
 .clearfix {
@@ -147,6 +160,9 @@ body {
   background: #ccc;
   padding: 26px 0;
   color: #333;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 .footer p {
   font-family: "Adobe 黑体 Std R";

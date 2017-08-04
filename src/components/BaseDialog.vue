@@ -46,11 +46,10 @@ export default {
 .dialog-filter .dialog {
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 20%;
   width: 500px;
   background: #fff;
   margin-left: -250px;
-  margin-top: -100px;
 }
 .dialog-header {
   font-size: 14px;
@@ -73,19 +72,5 @@ export default {
 .dialog-content {
   padding: 10px;
 }
-.dialog-footer {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-}
-.dialog-footer a {
-  display: inline-block;
-  width: 60px;
-  height: 24px;
-  background: #f06;
-  color: #fff;
-  text-align: center;
-  line-height: 24px;
-  border-radius: 6px;
-}
+
 </style>
